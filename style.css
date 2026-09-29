@@ -1,0 +1,381 @@
+/* ==========================================================
+   Christian Missionary Bilingual School — Stylesheet
+   Clean, restrained university-site style. Orange / Gray / White.
+   ========================================================== */
+
+:root {
+  --orange: #E06A2B;
+  --orange-dark: #B54F1B;
+  --gray-900: #1F1E1D;
+  --gray-700: #58534C;
+  --gray-400: #9B948A;
+  --gray-200: #E6E1D8;
+  --gray-100: #F6F3EE;
+  --white: #FFFFFF;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --max-width: 1160px;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--gray-900);
+  background: var(--white);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.14;
+  margin: 0 0 0.5em;
+  color: var(--gray-900);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.4rem, 5.2vw, 3.6rem); font-weight: 700; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.15rem); }
+h3 { font-size: 1.15rem; }
+
+p { margin: 0 0 1em; color: var(--gray-700); }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--orange-dark);
+  margin: 0 0 0.85em;
+}
+.eyebrow-light { color: rgba(255,255,255,0.85); }
+
+.section { padding: 96px 0; border-top: 1px solid var(--gray-200); }
+.section-lede { max-width: 620px; }
+
+/* ---------- Image placeholders ---------- */
+.img-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--gray-100);
+  border: 1px dashed var(--gray-400);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.img-placeholder::after {
+  content: attr(data-label);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  background: var(--white);
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--gray-200);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.btn-primary { background: var(--orange); color: var(--white); }
+.btn-primary:hover { background: var(--orange-dark); }
+.btn-outline-light { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.6); }
+.btn-outline-light:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+.btn-sm { padding: 8px 18px; font-size: 0.85rem; }
+
+/* ==========================================================
+   Header / Nav
+   ========================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--gray-900);
+}
+
+.site-nav { display: flex; align-items: center; gap: 30px; }
+.site-nav a:not(.btn) {
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--gray-700);
+  transition: color 0.15s ease;
+}
+.site-nav a:not(.btn):hover { color: var(--orange-dark); }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.nav-toggle span { width: 22px; height: 2px; background: var(--gray-900); }
+
+/* ==========================================================
+   Hero — full-bleed image with overlay headline
+   ========================================================== */
+.hero {
+  position: relative;
+  min-height: 82vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  border: none;
+  border-radius: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(20,18,16,0.82) 0%, rgba(20,18,16,0.4) 45%, rgba(20,18,16,0.15) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 72px;
+  max-width: 720px;
+}
+
+.hero-content h1 { color: var(--white); }
+.hero-lede { color: rgba(255,255,255,0.88); font-size: 1.05rem; max-width: 560px; }
+.hero-actions { display: flex; gap: 14px; margin-top: 8px; flex-wrap: wrap; }
+
+/* ==========================================================
+   About
+   ========================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* ==========================================================
+   Timeline
+   ========================================================== */
+.timeline {
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+  border-left: 2px solid var(--gray-200);
+}
+
+.timeline-item { position: relative; padding: 0 0 40px 36px; }
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--orange);
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 1.5px var(--orange);
+}
+
+.timeline-year {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--orange-dark);
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.timeline-body h3 { margin-bottom: 6px; }
+.timeline-body p { max-width: 560px; margin-bottom: 0; }
+
+/* ==========================================================
+   Academics / Stats
+   ========================================================== */
+.academics { background: var(--gray-100); }
+
+.stat-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--gray-200);
+  border: 1px solid var(--gray-200);
+}
+
+.stat-card {
+  background: var(--white);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--orange);
+  line-height: 1;
+}
+
+.stat-label { font-size: 0.9rem; color: var(--gray-700); font-weight: 500; }
+
+/* ==========================================================
+   Gallery
+   ========================================================== */
+.gallery-grid {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+/* ==========================================================
+   Footer (contact folded in)
+   ========================================================== */
+.site-footer { background: var(--gray-900); padding: 56px 0 20px; }
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 32px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-about p { color: var(--gray-400); margin: 10px 0 0; font-size: 0.88rem; }
+
+.footer-heading {
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin: 0 0 10px;
+}
+.footer-contact p { margin: 0 0 6px; font-size: 0.92rem; color: var(--gray-200); }
+.placeholder-text { font-style: italic; color: var(--gray-400); }
+
+.footer-nav { display: flex; flex-direction: column; gap: 10px; }
+.footer-nav a { color: var(--gray-200); font-size: 0.92rem; }
+.footer-nav a:hover { color: var(--orange); }
+
+.footer-note { text-align: center; color: var(--gray-400); font-size: 0.8rem; margin: 24px 0 0; }
+
+/* ==========================================================
+   Focus visibility (accessibility)
+   ========================================================== */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+@media (max-width: 860px) {
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 720px) {
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 8px 28px 18px;
+    display: none;
+  }
+  .site-nav.open { display: flex; }
+  .site-nav a:not(.btn) { padding: 12px 0; border-bottom: 1px solid var(--gray-100); width: 100%; }
+  .site-nav .btn { margin-top: 14px; }
+  .nav-toggle { display: flex; }
+  .brand-name { font-size: 0.8rem; max-width: 160px; }
+  .section { padding: 64px 0; }
+  .hero { min-height: 72vh; }
+}
+
+@media (max-width: 520px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
